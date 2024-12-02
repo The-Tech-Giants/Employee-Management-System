@@ -1,0 +1,703 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f3f4f6;
+}
+
+/* Dashboard container styling */
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar styling */
+.sidebar {
+    width: 250px;
+    background-color: #ff9500;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.profile-section {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.profile-picture {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #fff;
+    margin-bottom: 10px;
+}
+
+.profile-section p {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+nav {
+    width: 100%;
+    margin-top: 30px;
+}
+
+nav a {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.1em;
+    transition: background-color 0.3s;
+}
+
+nav a i {
+    margin-right: 10px;
+    font-size: 1.2em;
+}
+
+nav a:hover {
+    background-color: #ff7a00;
+}
+
+/* Main content styling */
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #f4f4f4;
+    overflow-y: auto;
+}
+
+.update-details {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.update-details h1 {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+/* Form styling */
+.update-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.form-group input, .form-group select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.form-group input:focus, .form-group select:focus {
+    border-color: #ff9500;
+}
+
+/* Button styling */
+.save-button {
+    grid-column: span 2;
+    padding: 10px;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #fff;
+    background-color: #ff9500;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.save-button:hover {
+    background-color: #ff7a00;
+}
+
+/* Success message styling */
+.success-message {
+    text-align: center;
+    color: #28a745;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+
+
+
+/* ------------------------------------------------------------------------------ */
+
+/* Register and Login*/
+
+/* Body */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+}
+
+/* Login and Register Container */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('TTG-Background.png'); /* Background for the entire page */
+    background-size: cover;
+    background-position: center;
+}
+
+.login-image {
+    flex: 1;
+}
+
+.login-image img {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+}
+
+.login-form {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 30px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.login-logo {
+    width: 80px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+/* Form Styling */
+label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+input[type="submit"] {
+    width: 100%;
+    padding: 12px 15px;
+    background-color: #ff9800;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+input[type="submit"]:hover {
+    background-color: #e68900;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .login-container {
+        flex-direction: column;
+    }
+
+    .login-image img {
+        height: 300px;
+    }
+}
+
+
+
+
+/* Display message at the bottom
+.success-msg,
+.error-msg {
+    bottom: 0;
+    top: auto;
+} */
+
+
+
+/* ------------------------------------------------------------------------------ */
+
+/* Dashboard */
+
+/* Dashboard Container */
+.dashboard-container {
+    display: flex;
+    height: 100vh;
+    background-image: url('TTG-Background.png'); /* Dashboard background image */
+    background-size: cover;
+    background-position: center;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background-color: #ff9800;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    color: white;
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile img {
+    width: 80px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.profile p {
+    font-weight: bold;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+ul li {
+    padding: 15px;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+ul li i {
+    margin-right: 10px;
+}
+
+ul li:hover {
+    background-color: #e68900;
+}
+
+
+
+/* Sidebar styling */
+.sidebar {
+    width: 250px;
+    background-color: #ff9500;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.sidebar img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.sidebar p {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: center;
+}
+
+nav {
+    width: 100%;
+    margin-top: 30px;
+}
+
+nav a {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.1em;
+    transition: background-color 0.3s;
+}
+
+nav a i {
+    margin-right: 10px;
+    font-size: 1.2em;
+}
+
+nav a:hover {
+    background-color: #ff7a00;
+}
+
+/* Main content styling */
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.welcome-message {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Announcements box styling */
+.announcements-box {
+    background-color: #fff;
+    padding: 20px;
+    width: 60%;
+    max-width: 500px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    color: #666;
+    font-size: 1em;
+}
+
+/* Success message styling */
+.success-message {
+    color: #28a745;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+
+
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.announcement {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+}
+
+
+
+
+
+/* _______________________________________________ */
+
+
+
+/* Daily Taks */
+
+/* Dashboard Container */
+.dashboard-container {
+    display: flex;
+    height: 100vh;
+    background-image: url('TTG-Background.png');
+    background-size: cover;
+    background-position: center;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background-color: #ff9800;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    color: white;
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile img {
+    width: 80px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.profile p {
+    font-weight: bold;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+.sidebar ul li {
+    padding: 15px;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    width: 100%;
+    display: block;
+}
+
+.sidebar ul li:hover {
+    background-color: #e68900;
+}
+
+/* Main Content for Daily Tasks */
+.dailyTasks_content {
+    flex: 1;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.dailyTasks_content h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.dailyTasks_tasksTable {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    padding: 10px;
+}
+
+.dailyTasks_tasksHeader, .dailyTasks_taskRow {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.dailyTasks_tasksHeader {
+    font-weight: bold;
+    background-color: #e0e0e0;
+}
+
+.dailyTasks_taskRow:nth-child(even) {
+    background-color: #fafafa;
+}
+
+/* No tasks found styling */
+.announcement {
+    font-size: 18px;
+    color: #555;
+    margin-top: 20px;
+    text-align: center;
+}
+
+
+
+
+
+/* ------------------------------------------------------------------------------ */
+
+/* Update Details */
+
+/* Dashboard Container */
+.dashboard-container {
+    display: flex;
+    height: 100vh;
+    background-color: #f2f2f2;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background-color: #ff9800;
+    padding: 20px;
+    color: white;
+}
+
+.profile {
+    text-align: center;
+}
+
+.profile img {
+    width: 80px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Align top for better content positioning */
+}
+
+.update-details h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+.update-form {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto; /* Center the form */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.form-group input {
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.save-button {
+    background-color: #ff9800;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.save-button:hover {
+    background-color: #e68900;
+}
+
+.success-message {
+    color: green;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .update-form {
+        padding: 20px;
+    }
+
+    .main-content {
+        padding: 20px;
+    }
+
+    .form-group input {
+        padding: 10px;
+    }
+
+    .save-button {
+        padding: 10px 15px;
+    }
+}
+
+
