@@ -4,7 +4,7 @@ session_start();
 
 // Check if the user is logged in
 if (!isset($_SESSION['employee_id'])) {
-    // If not logged in, redirect to the login page
+    // If not logged in, redirect back to the login page to enter details again
     header("Location: Login.php");
     exit();
 }
@@ -23,13 +23,12 @@ $profile_picture = isset($_SESSION['profile_picture']) ? $_SESSION['profile_pict
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="styles.css">
+     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="updatedetails.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <div class="dashboard-container">
-
         <!-- Just added this (I will add on other pages as well)     NB!! to revist -->
         <div class="sidebar">
         <div class="profile-section">
@@ -52,10 +51,11 @@ $profile_picture = isset($_SESSION['profile_picture']) ? $_SESSION['profile_pict
                 <p>Here are the latest updates for today.</p>
                 
             </div>
-            <img src="TTG-Background.png" alt="Test Background" />
+            <img src="TTG-Background.png" alt="TTG-Background" />
 
         </div>
     </div>
+    <!-- <script src="script.js"></script> -->
 </body>
 </html>
 
