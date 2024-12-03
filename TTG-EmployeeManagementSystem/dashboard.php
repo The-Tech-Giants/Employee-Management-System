@@ -37,10 +37,11 @@ $profile_picture = isset($_SESSION['profile_picture']) ? $_SESSION['profile_pict
         <p>@<?php echo htmlspecialchars($user_name); ?></p> <!-- Dynamically display the username -->
     </div>
             <nav>
+                <a href="dashboard.php"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
                 <a href="update_details.php"><i class="fas fa-user"></i> Update Details</a>
                 <a href="daily_tasks.php"><i class="fas fa-tasks"></i> Daily Tasks</a>
                 <a href="timeOff.php"><i class="fas fa-calendar-alt"></i> Time Off</a>
-                <a href="leave_balance.php"><i class="fas fa-calculator-alt"></i> leave Balance</a>
+                <a href="leave_balance.php"><i class="fas fa-calculator"></i> Leave Balance</a>
                 <a href="logout.php"><i class="fas fa-sign-out-alt"></i> Log Out</a>
             </nav>
         </div>
@@ -49,7 +50,10 @@ $profile_picture = isset($_SESSION['profile_picture']) ? $_SESSION['profile_pict
             <h1>Welcome to the Dashboard, <?php echo htmlspecialchars($user_name); ?></h1>
             <div class="announcement">
                 <p>Here are the latest updates for today.</p>
+                
             </div>
+            <img src="TTG-Background.png" alt="Test Background" />
+
         </div>
     </div>
 </body>
