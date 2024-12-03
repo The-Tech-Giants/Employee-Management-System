@@ -6,143 +6,41 @@
 }
 
 body {
-    background-color: #f3f4f6;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-image: url('TTG-Background.png'); 
+    background-size: contain; 
+    background-position: 75% center; 
+    background-attachment: fixed;
+    color: #333; 
+    height: 100vh; 
 }
 
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0); /* No transparency on the overlay */
+    z-index: -1; /* Place behind the content */
+}
+
+
+/* Dashboard Container */
 .dashboard-container {
     display: flex;
     min-height: 100vh;
+    background-color: rgba(255, 255, 255, 0.1); /* Slight white tint with transparency */
+    backdrop-filter: blur(0px);
 }
+
 
 .sidebar {
     width: 250px;
-    background-color: #ff9500;
-    color: #fff;
-    padding-top: 20px;
-}
-
-.sidebar img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    display: block;
-    margin: 0 auto;
-}
-
-.sidebar p {
-    text-align: center;
-    font-size: 1.2em;
-    margin-top: 10px;
-}
-
-.sidebar nav {
-    margin-top: 30px;
-}
-
-.sidebar nav a {
-    display: flex;
-    align-items: center;
-    padding: 10px 20px;
-    color: #fff;
-    text-decoration: none;
-    font-size: 1.1em;
-}
-
-.sidebar nav a:hover {
-    background-color: #ff7a00;
-}
-
-.sidebar nav a svg {
-    margin-right: 10px;
-}
-
-.main-content {
-    flex-grow: 1;
-    padding: 20px;
-}
-
-.update-details {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.update-details h1 {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.update-form {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-}
-
-.form-group label {
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #333;
-}
-
-.form-group input, .form-group select {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1em;
-}
-
-.form-group input:focus, .form-group select:focus {
-    border-color: #ff9500;
-}
-
-/* Make the save button span both columns */
-.save-button {
-    grid-column: span 2;
-    padding: 10px;
-    font-size: 1.1em;
-    font-weight: bold;
-    color: #fff;
-    background-color: #ff9500;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.save-button:hover {
-    background-color: #ff7a00;
-}
-
-/* Success message styling */
-.success-message {
-    text-align: center;
-    color: #28a745;
-    font-weight: bold;
-    margin-top: 15px;
-}
-
-
-
-
-/* Container styling */
-.dashboard-container {
-    display: flex;
-    height: 100vh;
-}
-
-/* Sidebar styling */
-.sidebar {
-    width: 250px;
-    background-color: #ff9500;
+    background-color: rgba(255, 149, 0, 0.9);
     color: #fff;
     display: flex;
     flex-direction: column;
@@ -168,11 +66,25 @@ body {
     font-weight: bold;
 }
 
-nav {
-    width: 100%;
+.sidebar img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto;
 }
 
-nav a {
+.sidebar p {
+    text-align: center;
+    font-size: 1.2em;
+    margin-top: 10px;
+}
+
+.sidebar nav {
+    margin-top: 30px;
+}
+
+.sidebar nav a {
     display: flex;
     align-items: center;
     padding: 15px 20px;
@@ -182,62 +94,82 @@ nav a {
     transition: background-color 0.3s;
 }
 
-nav a i {
+.sidebar nav a:hover {
+    background-color: rgba(255, 122, 0, 0.8);
+}
+
+.sidebar nav a svg {
     margin-right: 10px;
-    font-size: 1.2em;
 }
 
-nav a:hover {
-    background-color: #ff7a00;
-}
-
-/* Main content styling */
+/* Main Content */
 .main-content {
-    flex: 1;
+    flex-grow: 1;
     padding: 20px;
-    background-color: #f4f4f4;
-    overflow-y: auto;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Update Details Section */
+.update-details {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .update-details h1 {
-    font-size: 2em;
+    text-align: center;
     margin-bottom: 20px;
+    color: #ff9500;
 }
 
-/* Form styling */
+
+/* Form */
 .update-form {
-    background-color: #fff;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .form-group {
     display: flex;
     flex-direction: column;
-    margin-bottom: 15px;
 }
 
 .form-group label {
     font-weight: bold;
     margin-bottom: 5px;
+    color: #333;
 }
 
-.form-group input {
+.form-group input, .form-group select {
+    background-color: rgba(255, 255, 255, 0.9);
     padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
     font-size: 1em;
-    border: 1px solid #ddd;
-    border-radius: 4px;
 }
 
+.form-group input:focus {
+    border-color: #ff9500;
+    outline: none;
+}
+
+/* Save Button */
 .save-button {
-    padding: 10px 15px;
-    background-color: #ff9500;
-    color: #fff;
-    font-size: 1em;
+    grid-column: span 2;
+    padding: 10px;
+    font-size: 1.1em;
     font-weight: bold;
+    color: #fff;
+    background-color: #ff9500;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
@@ -246,9 +178,96 @@ nav a:hover {
     background-color: #ff7a00;
 }
 
-/* Success message styling */
+/* Success Message */
 .success-message {
+    text-align: center;
     color: #28a745;
     font-weight: bold;
     margin-top: 15px;
+}
+
+
+
+
+/* Mobile-Friendly Styles */
+@media (max-width: 768px) {
+    .dashboard-container {          /* Stack sidebar and main content for tablets */
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;                /* Sidebar takes full width */
+        padding-top: 10px;
+    }
+
+    .main-content {
+        padding: 15px;
+        margin-top: 20px;
+    }
+
+    .update-details {
+        padding: 20px;
+    }
+
+    
+    .update-form {                      /* Adjust form layout */
+        grid-template-columns: 1fr;     /* Stack the form fields */
+    }
+
+    .form-group input, .form-group select {
+        padding: 12px;
+        font-size: 1.1em;
+    }
+
+    .save-button {
+        font-size: 1.2em;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar {                           /* Stack sidebar and main content for mobile screens */
+        padding-top: 15px;
+        width: 100%;                     /* Full-width sidebar */
+    }
+
+    .profile-picture {
+        width: 70px;
+        height: 70px;
+    }
+
+    .sidebar nav a {
+        padding: 12px 15px;
+        font-size: 1em;
+    }
+
+    .main-content {
+        padding: 10px;
+    }
+
+    .update-details {
+        padding: 15px;
+    }
+
+   
+    .form-group input, .form-group select {          /* Form field and button adjustments for small screens */
+        padding: 14px;
+        font-size: 1.1em;
+    }
+
+    .save-button {
+        font-size: 1.3em;
+        padding: 18px;
+    }
+
+    @media (max-width: 768px) {
+        .update-form {
+            grid-template-columns: 1fr;             /* Single-column layout for mobile */
+            gap: 10px;                              /*Adjust spacing between fields */
+        }
+    
+        .save-button {
+            grid-column: span 1;                    /* Ensure button spans only one column */
+        }
+    }
 }
