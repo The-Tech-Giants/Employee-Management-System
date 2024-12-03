@@ -1,16 +1,9 @@
-
-
-/* ------------------------------------------------------------------------------ */
-
-/* Register and Login*/
-
-/* Body */
+/* General Styles */
 body {
     margin: 0;
     padding: 0;
     font-family: 'Arial', sans-serif;
     background-color: #f4f4f9;
-    
 }
 
 /* Login and Register Container */
@@ -19,13 +12,9 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-image: url('TTG-Background.png'); /* Background for the entire page */
+    background-image: url('TTG-Background.png');
     background-size: cover;
     background-position: center;
-}
-
-.login-image {
-    flex: 1;
 }
 
 .login-image img {
@@ -56,7 +45,6 @@ h2 {
     color: #333;
 }
 
-/* Form Styling */
 label {
     font-size: 14px;
     margin-bottom: 5px;
@@ -71,8 +59,8 @@ input[type="email"] {
     margin-bottom: 20px;
     border: 1px solid #ddd;
     border-radius: 5px;
-    box-sizing: border-box;
     font-size: 16px;
+    box-sizing: border-box;
 }
 
 input[type="submit"] {
@@ -101,23 +89,7 @@ input[type="submit"]:hover {
     }
 }
 
-
-
-
-/* Display message at the bottom
-.success-msg,
-.error-msg {
-    bottom: 0;
-    top: auto;
-} */
-
-
-
-/* ------------------------------------------------------------------------------ */
-
 /* Dashboard */
-
-/* Dashboard Container */
 .dashboard-container {
     display: flex;
     height: 100vh;
@@ -125,104 +97,49 @@ input[type="submit"]:hover {
     background-position: center;
 }
 
-/* Sidebar */
-.sidebar {
-    width: 250px;
+
+/* Sidebar Toggle */
+.sidebar-toggle {
+    display: none;
+    position: fixed;
+    top: 20px;
+    left: 20px;
     background-color: #ff9800;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
     color: white;
-}
-
-.profile {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.profile img {
-    width: 80px;
-    border-radius: 50%;
-    margin-bottom: 10px;
-}
-
-.profile p {
-    font-weight: bold;
-}
-
-ul {
-    list-style: none;
-    padding: 0;
-    width: 100%;
-}
-
-ul li {
-    padding: 15px;
-    font-size: 16px;
+    border: none;
+    padding: 10px;
+    font-size: 20px;
     cursor: pointer;
-    display: flex;
-    align-items: center;
+    z-index: 1000;
 }
 
-ul li i {
-    margin-right: 10px;
+/* Show sidebar on toggle */
+.sidebar.visible {
+    transform: translateX(0);
 }
 
-ul li:hover {
-    background-color: #e68900;
-}
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 80%;
+        position: fixed;
+        height: 100%;
+        top: 0;
+        left: -100%; /* Start off-screen */
+        transition: transform 0.3s ease;
+    }
 
+    .sidebar-toggle {
+        display: block;
+    }
 
-/* Main Content */
-.main-content { 
-    flex: 1;
-    padding: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; /* Centers content vertically */
-}
-
-h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
-    color: #333;
-}
-
-.announcement {
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    width: 100%;
-    max-width: 600px;
-    text-align: center;
-    margin-top: 50px; /* Adds space above the announcement */
+    .main-content {
+        margin-left: 0;
+    }
 }
 
 
 
-
-
-
-/* _______________________________________________ */
-
-
-
-/* Daily Taks */
-
-/* Dashboard Container */
-.dashboard-container {
-    display: flex;
-    height: 100vh;
-    background-image: url('TTG-Background.png');
-    background-size: cover;
-    background-position: center;
-}
-
-/* Sidebar */
 .sidebar {
     width: 250px;
     background-color: #ff9800;
@@ -231,22 +148,15 @@ h1 {
     align-items: center;
     padding: 20px;
     color: white;
+    position: fixed;
+    height: 100%;
+    overflow-y: auto;
 }
 
-.profile {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.profile img {
+.sidebar .profile img {
     width: 80px;
     border-radius: 50%;
     margin-bottom: 10px;
-}
-
-.profile p {
-    font-weight: bold;
 }
 
 .sidebar ul {
@@ -261,35 +171,57 @@ h1 {
     cursor: pointer;
     display: flex;
     align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.sidebar ul li a {
-    color: white;
-    text-decoration: none;
-    width: 100%;
-    display: block;
+.sidebar ul li i {
+    margin-right: 10px;
 }
 
 .sidebar ul li:hover {
     background-color: #e68900;
 }
 
-/* Main Content for Daily Tasks */
-.dailyTasks_content {
+.main-content {
     flex: 1;
+    margin-left: 250px;
     padding: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
-.dailyTasks_content h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
-    color: #333;
+.announcement {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+    margin-top: 50px;
 }
 
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .sidebar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 999;
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding: 20px;
+    }
+}
+
+
+
+
+/* Daily Tasks */
 .dailyTasks_tasksTable {
     background-color: #fff;
     border-radius: 10px;
@@ -299,7 +231,8 @@ h1 {
     padding: 10px;
 }
 
-.dailyTasks_tasksHeader, .dailyTasks_taskRow {
+.dailyTasks_tasksHeader,
+.dailyTasks_taskRow {
     display: flex;
     justify-content: space-between;
     padding: 10px;
@@ -315,152 +248,9 @@ h1 {
     background-color: #fafafa;
 }
 
-/* No tasks found styling */
-.announcement {
-    font-size: 18px;
-    color: #555;
-    margin-top: 20px;
-    text-align: center;
-}
-
-
-
-
-
-/* ------------------------------------------------------------------------------ */
-
-/* Update Details */
-
-/* Dashboard Container */
-.dashboard-container {
-    display: flex;
-    height: 100vh;
-    background-color: #f2f2f2;
-}
-
-/* Sidebar */
-.sidebar {
-    width: 250px;
-    background-color: #ff9800;
-    padding: 20px;
-    color: white;
-}
-
-.profile {
-    text-align: center;
-}
-
-.profile img {
-    width: 80px;
-    border-radius: 50%;
-    margin-bottom: 10px;
-}
-
-.sidebar ul {
-    list-style: none;
-    padding: 0;
-}
-
-.sidebar ul li a {
-    color: white;
-    text-decoration: none;
-    display: block;
-    padding: 10px;
-    margin: 10px 0;
-}
-
-/* Main Content */
-.main-content {
-    flex: 1;
-    padding: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start; /* Align top for better content positioning */
-}
-
-.update-details h1 {
-    font-size: 28px;
-    margin-bottom: 20px;
-    color: #333;
-    text-align: center;
-}
-
-.update-form {
-    background-color: white;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto; /* Center the form */
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 15px;
-}
-
-.form-group label {
-    font-size: 16px;
-    margin-bottom: 5px;
-    color: #333;
-}
-
-.form-group input {
-    padding: 12px;
-    font-size: 16px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    background-color: #f9f9f9;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.save-button {
-    background-color: #ff9800;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    width: 100%;
-    transition: background-color 0.3s ease;
-}
-
-.save-button:hover {
-    background-color: #e68900;
-}
-
-.success-message {
-    color: green;
-    font-weight: bold;
-    margin-bottom: 15px;
-    text-align: center;
-}
-
-
-
-
-/* Mobile Responsiveness */
 @media (max-width: 768px) {
-    .update-form {
-        padding: 20px;
-    }
-
-    .main-content {
-        padding: 20px;
-    }
-
-    .form-group input {
-        padding: 10px;
-    }
-
-    .save-button {
-        padding: 10px 15px;
+    .dailyTasks_tasksTable {
+        width: 90%;
     }
 }
-
 
