@@ -16,20 +16,23 @@ body {
 
 .dashboard-container {
   display: flex;
-  width: 80%;
-  max-width: 1200px;
+  width: 100%;
+  max-width: 1500px;
+  height: auto;
+  max-height: 1100px;
   border: 1px solid #ccc;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-image: url('TTG-Background.png'); /* Dashboard background image */
-  background-size: cover;
+  background-size: contain;
   background-position: center;
+  background-repeat: no-repeat;
 }
 
 .sidebar {
   width: 250px;
-  background-color: #ff9900;
+  background-color: #ff9500;
   color: white;
   display: flex;
   flex-direction: column;
@@ -41,13 +44,15 @@ body {
 .sidebar img.user-icon {
   width: 100px;
   height: 100px;
-  border-radius: 50%;
-  margin-bottom: 15px;
+  object-fit: cover; /* Ensures the image scales properly inside the circle */
+  border-radius: 50%; /* Makes it a circle */
+  background-color: #f0f0f0; /* Add a background color for when no image is uploaded */
+  border: px solid #fff; 
 }
 
 .sidebar p {
   font-size: 1.2em;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .sidebar nav a {
@@ -56,7 +61,7 @@ body {
   padding: 10px;
   margin: 5px 0;
   color: white;
-  text-align: center;
+  text-align: left;
   text-decoration: none;
   border-radius: 5px;
   transition: background-color 0.3s ease;
@@ -69,18 +74,22 @@ body {
 .main-content {
   flex-grow: 1;
   padding: 20px;
+  
 }
 
 .main-content h2 {
   margin-bottom: 20px;
   color: #333;
+  text-align: center;
 }
 
 .dashboard-content {
   padding: 20px;
-  background-color: rgba(255, 255, 255, 0.8); /* White with 80% opacity */
+  background-color: rgba(255, 255, 255, 0.6); /* White with 80% opacity */
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 550px;
+  margin: 0 auto;
 }
 
 .vertical-form {
@@ -110,7 +119,7 @@ body {
 .vertical-form button {
   padding: 10px;
   font-size: 1em;
-  background-color: #FFA500;
+  background-color: #ff9500;
   color: white;
   border: none;
   border-radius: 5px;
@@ -133,10 +142,10 @@ body {
   .sidebar {
     position: absolute;
     transform: translateX(-100%);
-    width: 100%;
+    width: 50%;
     height: 100%;
     z-index: 100;
-    background-color: #ff9900;
+    background-color: #ff9500;
   }
 
   .sidebar.active {
@@ -159,7 +168,7 @@ body {
   top: 20px;
   left: 20px;
   font-size: 1.5em;
-  color: #ff9900;
+  color:#ff9500;
   cursor: pointer;
 }
 
