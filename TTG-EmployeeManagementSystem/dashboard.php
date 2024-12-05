@@ -16,6 +16,9 @@ $profile_picture = isset($_SESSION['profile_picture']) ? $_SESSION['profile_pict
 
 
 
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
