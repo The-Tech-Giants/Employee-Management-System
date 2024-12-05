@@ -30,14 +30,27 @@ body {
 }
 
 
-/* Adjust the .main-content for correct display */
+/* Adjust the .main-content for correct display
 .main-content {
     position: relative;
     padding-top: 0px;
     background-color: rgba(255, 255, 255, 0.8);
     border-radius: 10px;
     z-index: 1;
+} */
+
+.main-content {
+    flex: 1;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Push content to the top */
+    background-color: #f4f4f4; /* Maintain background styling */
+    overflow-y: auto; /* Allow scrolling if content overflows */
 }
+
+
 
 
 /* Add more specific styling for images */
@@ -272,6 +285,12 @@ nav a:hover {
 /* Mobile-specific styles */
 @media (max-width: 768px) {
 
+        .main-content {
+            padding: 40px;
+            justify-content: flex-start; /* Ensure top alignment on mobile */
+        }
+    
+    
     .sidebar {
         position: fixed;
         top: 0;
