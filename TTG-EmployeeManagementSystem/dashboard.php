@@ -16,25 +16,34 @@ $profile_picture = isset($_SESSION['profile_picture']) ? $_SESSION['profile_pict
 
 
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="updatedetails.css">
+    <link rel="stylesheet" href="dashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <div class="dashboard-container">
-        <!-- Just added this (I will add on other pages as well)     NB!! to revist -->
+        <!-- Sidebar -->
         <div class="sidebar">
         <div class="profile-section">
-        <img src="<?php echo htmlspecialchars($profile_picture); ?>" alt="User Profile" class="profile-picture">
-        <p>@<?php echo htmlspecialchars($user_name); ?></p> <!-- Dynamically display the username -->
-    </div>
+        <div class="profile-card">
+        <!-- Profile picture -->
+        <div class="profile-image">
+            <img src="<?php echo htmlspecialchars($profile_picture); ?>" id="profilePic" alt="User Profile">
+            <input type="file" id="imageUpload" accept="image/*" style="display: none;" onchange="updateProfilePic()">
+        </div>
+        <!-- Button now outside the .profile-image div -->
+        <button class="profile-button" onclick="document.getElementById('imageUpload').click()">Change Picture</button>
+        <!-- Profile information -->
+        <div class="profile-info">
+            <p>@<?php echo htmlspecialchars($user_name); ?></p>
+        </div>
+                </div>
+            </div>
             <nav>
                 <a href="dashboard.php"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
                 <a href="update_details.php"><i class="fas fa-user"></i> Update Details</a>
@@ -44,18 +53,21 @@ $profile_picture = isset($_SESSION['profile_picture']) ? $_SESSION['profile_pict
                 <a href="logout.php"><i class="fas fa-sign-out-alt"></i> Log Out</a>
             </nav>
         </div>
-        
+
+        <!-- Main Content -->
         <div class="main-content">
             <h1>Welcome to the Dashboard, <?php echo htmlspecialchars($user_name); ?></h1>
             <div class="announcement">
                 <p>Here are the latest updates for today.</p>
-                
             </div>
             <img src="TTG-Background.png" alt="TTG-Background" />
-
         </div>
+        
     </div>
-    <!-- <script src="script.js"></script> -->
+
+    <!-- Toggle Button -->
+    <button class="toggle-btn">☰</button>
+
+    <script src="dashboard.js"></script>
 </body>
 </html>
-
