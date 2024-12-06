@@ -6,15 +6,16 @@
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-image: url('TTG-Background.png'); 
-    background-size: contain; 
-    background-position: 75% center; 
-    background-attachment: fixed;
-    color: #333; 
-    height: 100vh; 
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background-image: url('TTG-Background.png'); 
+        background-size: cover; /* Change 'contain' to 'cover' */
+        background-repeat: no-repeat; /* Prevent image repetition */
+        background-position: center; /* Center the image */
+        background-attachment: fixed;
+        color: #333; 
+        height: 100vh;   
 }
 
 body::before {
@@ -40,13 +41,14 @@ body::before {
 
 .sidebar {
     width: 250px;
-    background-color: rgba(255, 149, 0, 0.9);
-    color: #fff;
+    background-color: #ff9500;
+    color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 20px;
-}
+    padding: 20px;
+    transition: transform 0.3s ease;
+  }
 
 .profile-section {
     text-align: center;
@@ -75,24 +77,25 @@ body::before {
 }
 
 .sidebar p {
-    text-align: center;
     font-size: 1.2em;
-    margin-top: 10px;
-}
+    margin-bottom: 30px;
+  }
 
 .sidebar nav {
     margin-top: 30px;
 }
 
 .sidebar nav a {
-    display: flex;
-    align-items: center;
-    padding: 15px 20px;
-    color: #fff;
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    color: white;
+    text-align: left;
     text-decoration: none;
-    font-size: 1.1em;
-    transition: background-color 0.3s;
-}
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
 
 .sidebar nav a:hover {
     background-color: rgba(255, 122, 0, 0.8);
@@ -123,7 +126,7 @@ body::before {
 .update-details h1 {
     text-align: center;
     margin-bottom: 20px;
-    color: #ff9500;
+    color: #333;
 }
 
 
@@ -189,21 +192,41 @@ body::before {
 
 
 
+
+
 /* Mobile-Friendly Styles */
 @media (max-width: 768px) {
-    .dashboard-container {          /* Stack sidebar and main content for tablets */
+    body {
+        background-size: 100%; /* Decrease the size to 80% */
+        background-position: center; /* Keep it centered */
+    }
+
+    .dashboard-container {
         flex-direction: column;
-    }
-
-    .sidebar {
-        width: 100%;                /* Sidebar takes full width */
-        padding-top: 10px;
-    }
-
-    .main-content {
-        padding: 15px;
-        margin-top: 20px;
-    }
+        width: 100%;
+        max-width: none;
+      }
+    
+      .sidebar {
+        position: absolute;
+        transform: translateX(-100%);
+        width: 50%;
+        height: 100%;
+        z-index: 100;
+        background-color: #ff9500;
+      }
+    
+      .sidebar.active {
+        transform: translateX(0);
+      }
+    
+      .main-content {
+        padding: 10px;
+      }
+    
+      .vertical-form {
+        width: 90%;
+      }
 
     .update-details {
         padding: 20px;
@@ -225,40 +248,16 @@ body::before {
     }
 }
 
-@media (max-width: 480px) {
-    .sidebar {                           /* Stack sidebar and main content for mobile screens */
-        padding-top: 15px;
-        width: 100%;                     /* Full-width sidebar */
-    }
+.hamburger {
+    display: none;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 1.5em;
+    color:#ff9500;
+    cursor: pointer;
+  }
 
-    .profile-picture {
-        width: 70px;
-        height: 70px;
-    }
-
-    .sidebar nav a {
-        padding: 12px 15px;
-        font-size: 1em;
-    }
-
-    .main-content {
-        padding: 10px;
-    }
-
-    .update-details {
-        padding: 15px;
-    }
-
-   
-    .form-group input, .form-group select {          /* Form field and button adjustments for small screens */
-        padding: 14px;
-        font-size: 1.1em;
-    }
-
-    .save-button {
-        font-size: 1.3em;
-        padding: 18px;
-    }
 
     @media (max-width: 768px) {
         .update-form {
@@ -269,5 +268,17 @@ body::before {
         .save-button {
             grid-column: span 1;                    /* Ensure button spans only one column */
         }
+    }
+
+    @media (max-width: 768px){
+        .hamburger{
+            display: block;
+        }
+      }
+/* Desktop View */
+@media (min-width: 769px) {
+    body {
+        background-size: 60%; /* Scale the image to 60% of the container */
+        background-position: calc(75% + 20px) center; /* Adjust horizontal position */
     }
 }
