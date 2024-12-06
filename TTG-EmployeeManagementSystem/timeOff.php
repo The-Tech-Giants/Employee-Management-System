@@ -1,3 +1,60 @@
+<?php
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $leave_type = $_POST["leave_type"] ?? '';
+    $start_date = $_POST["start_date"] ?? '';
+    $end_date = $_POST["end_date"] ?? '';
+    $reason = $_POST["reason"] ?? '';
+
+    $host = "localhost";
+    $dbname = "timeoff_db";
+    $username = "root";
+    $password = "";
+
+    // Connect to the database
+    $conn = mysqli_connect($host, $username, $password, $dbname);
+
+    if (!$conn) {
+        die("Connection error: " . mysqli_connect_error());
+    }
+
+    // Prepare and execute the SQL query to insert data
+    $sql = "INSERT INTO timeoff (leave_type, start_date, end_date, reason)
+            VALUES (?, ?, ?, ?)";
+
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        die("SQL Error: " . mysqli_error($conn));
+    }
+
+    mysqli_stmt_bind_param($stmt, "ssss", 
+            $leave_type,
+            $start_date,
+            $end_date,
+            $reason);
+
+    if (mysqli_stmt_execute($stmt)) {
+        $message = "";
+    } else {
+        $message = "Error saving record: " . mysqli_stmt_error($stmt);
+    }
+
+    // Close the prepared statement and the database connection
+    mysqli_stmt_close($stmt);
+    mysqli_close($conn);
+
+  }
+
+?>
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,6 +74,7 @@
     <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
         <!-- User Profile Picture -->
+         
         <form method="POST" action="timeOff.php" enctype="multipart/form-data" id="profileForm">
             <label for="profilePic">
                 <img src="UserIcon.jpg" alt="User Icon" class="user-icon" id="profileImage">
@@ -38,7 +96,7 @@
     <div class="main-content">
         <h2>Request Time Off</h2>
         <div class="dashboard-content">
-            <form action="time_off_action.php" method="post" class="vertical-form">
+            <form action="timeOff.php" method="post" class="vertical-form">
                 <label for="leave_type">Leave Type:</label>
                 <select name="leave_type" id="leave_type">
                     <option value="casual">Casual</option>
@@ -47,12 +105,18 @@
                 </select>
                 <label for="start_date">Start Date:</label>
                 <input type="date" name="start_date" id="start_date">
+
                 <label for="end_date">End Date:</label>
                 <input type="date" name="end_date" id="end_date">
+
                 <label for="reason">Reason:</label>
                 <textarea name="reason" id="reason" rows="4"></textarea>
+
                 <button type="submit">Submit</button>
             </form>
+            <?php if (!empty($message)) : ?>
+                    <p class="success-message"><?php echo $message; ?></p>
+                <?php endif; ?>
         </div>
     </div>
 </div>
