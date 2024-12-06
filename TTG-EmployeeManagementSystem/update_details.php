@@ -1,86 +1,74 @@
 <?php
-session_start();
-
-if (!isset($_SESSION['employee_id'])) {
-    header("Location: Login.php");
-    exit();
-}
-
-require 'db.php';
-
-$employee_id = $_SESSION['employee_id'];
-$message = "";
-
+// Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Collect and sanitize form data
-    $data = [
-        'full_name' => htmlspecialchars($_POST['full_name']),
-        'title' => htmlspecialchars($_POST['title']),
-        'role' => htmlspecialchars($_POST['role']),
-        'employee_id' => htmlspecialchars($_POST['employee_id']),
-        'dob' => htmlspecialchars($_POST['dob']),
-        'nationality' => htmlspecialchars($_POST['nationality']),
-        'gender' => htmlspecialchars($_POST['gender']),
-        'race' => htmlspecialchars($_POST['race']),
-        'start_date' => htmlspecialchars($_POST['start_date']),
-        'mobile' => htmlspecialchars($_POST['mobile']),
-        'email' => htmlspecialchars($_POST['email']),
-        'emergency_name' => htmlspecialchars($_POST['emergency_name']),
-        'emergency_number' => htmlspecialchars($_POST['emergency_number'])
-    ];
+    // Retrieve form data using POST method
+    $full_name = $_POST["full_name"] ?? '';
+    $title = $_POST["title"] ?? '';
+    $role = $_POST["role"] ?? '';
+    $employee_id = $_POST["employee_id"] ?? 0; // Assuming it's an integer
+    $dob = $_POST["dob"] ?? '';
+    $nationality = $_POST["nationality"] ?? '';
+    $gender = $_POST["gender"] ?? '';
+    $race = $_POST["race"] ?? '';
+    $start_date = $_POST["start_date"] ?? '';
+    $mobile = $_POST["mobile"] ?? '';
+    $email = $_POST["email"] ?? '';
+    $emergency_name = $_POST["emergency_name"] ?? '';
+    $emergency_number = $_POST["emergency_number"] ?? '';
 
-    // Update user details in the 'users' table
-    $stmt = $conn->prepare("
-        UPDATE users 
-        SET full_name = :full_name, 
-            title = :title, 
-            role = :role, 
-            dob = :dob, 
-            nationality = :nationality, 
-            gender = :gender, 
-            race = :race, 
-            start_date = :start_date, 
-            mobile = :mobile, 
-            email = :email, 
-            emergency_name = :emergency_name, 
-            emergency_number = :emergency_number 
-        WHERE employee_id = :employee_id
-    ");
+    // Database connection variables
+    $host = "localhost";
+    $dbname = "update_details_db";
+    $username = "root";
+    $password = "";
 
-    try {
-        $stmt->execute($data);
-        if ($stmt->rowCount() > 0) {
-            $message = "Details updated successfully.";
-        } else {
-            $message = "No changes made or record not found.";
-        }
-    } catch (PDOException $e) {
-        $message = "Error updating details: " . $e->getMessage();
+    // Establish database connection
+    $conn = mysqli_connect($host, $username, $password, $dbname);
+
+    // Check connection
+    if (!$conn) {
+        die("Connection error: " . mysqli_connect_error());
     }
+
+    // SQL query to insert data into the table
+    $sql = "INSERT INTO update_details (full_name, title, role, employee_id, dob, nationality, gender, race, start_date, mobile, email, emergency_name, emergency_number)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+    // Prepare SQL statement
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        die("SQL Error: " . mysqli_error($conn));
+    }
+
+    // Bind parameters for the prepared statement
+    mysqli_stmt_bind_param($stmt, "ssisssssssiss",
+        $full_name,
+        $title,
+        $role,
+        $employee_id,
+        $dob,
+        $nationality,
+        $gender,
+        $race,
+        $start_date,
+        $mobile,
+        $email,
+        $emergency_name,
+        $emergency_number
+    );
+
+    // Execute the statement
+    if (mysqli_stmt_execute($stmt)) {
+        $message = "Record saved successfully.";
+    } else {
+        $message = "Error saving record: " . mysqli_stmt_error($stmt);
+    }
+
+    // Close the statement and connection
+    mysqli_stmt_close($stmt);
+    mysqli_close($conn);
 }
-
-// Retrieve current user details from the 'users' table
-$stmt = $conn->prepare("SELECT * FROM users WHERE employee_id = :employee_id");
-$stmt->execute(['employee_id' => $employee_id]);
-$user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-// Set default values if no user data is found
-$user = $user ?: [
-    'full_name' => '',
-    'title' => '',
-    'role' => '',
-    'dob' => '',
-    'nationality' => '',
-    'gender' => '',
-    'race' => '',
-    'start_date' => '',
-    'mobile' => '',
-    'email' => '',
-    'emergency_name' => '',
-    'emergency_number' => ''
-];
 ?>
-
 
 
 
@@ -99,15 +87,22 @@ $user = $user ?: [
 </head>
 <body>
     <div class="dashboard-container">
-        <div class="sidebar">
+
+    <div class="hamburger" onclick="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+    </div>
+
+        <div class="sidebar" id="sidebar">
             <div class="profile-section">
                 <img src="profile-placeholder.png" alt="User Profile" class="profile-picture">
-                <p>@User</p>
+                <p>Bonolo Mafafo</p>
             </div>
             <nav>
+                <a href="update_details.php"><i class="fas fa-gauge"></i> Dashboard</a>
                 <a href="update_details.php"><i class="fas fa-user"></i> Update Details</a>
                 <a href="daily_tasks.php"><i class="fas fa-tasks"></i> Daily Tasks</a>
                 <a href="timeOff"><i class="fas fa-calendar-alt"></i> Time Off</a>
+                <a href="update_details.php"><i class="fa-solid fa-scale-balanced"></i> Leave Balance</a>
                 <a href="logout.php"><i class="fas fa-sign-out-alt"></i> Log Out</a>
             </nav>
         </div>
@@ -115,70 +110,70 @@ $user = $user ?: [
         <div class="main-content">
             <div class="update-details">
                 <h1>Update Details</h1>
-                <form method="POST" action="update-details.php" class="update-form">
+                <form method="POST" action="update_details.php" class="update-form">
                     <div class="form-group">
                         <label>Full Name</label>
-                        <input type="text" name="full_name" value="<?php echo htmlspecialchars($user['full_name']); ?>" required>
+                        <input type="text" name="full_name" value="" required>
                     </div>
 
                     <div class="form-group">
                         <label>Title</label>
-                        <input type="text" name="title" value="<?php echo htmlspecialchars($user['title']); ?>" required>
+                        <input type="text" name="title" value="" required>
                     </div>
 
                     <div class="form-group">
                         <label>Role</label>
-                        <input type="text" name="role" value="<?php echo htmlspecialchars($user['role']); ?>" required>
+                        <input type="text" name="role" value="" required>
                     </div>
 
                     <div class="form-group">
                         <label>Employee ID</label>
-                        <input type="text" name="employee_id" value="<?php echo htmlspecialchars($employee_id); ?>" readonly>
+                        <input type="text" name="employee_id" value="" required>
                     </div>
 
                     <div class="form-group">
                         <label>Date of Birth</label>
-                        <input type="date" name="dob" value="<?php echo htmlspecialchars($user['dob']); ?>" required>
+                        <input type="date" name="dob" value="" required>
                     </div>
 
                     <div class="form-group">
                         <label>Nationality</label>
-                        <input type="text" name="nationality" value="<?php echo htmlspecialchars($user['nationality']); ?>" required>
+                        <input type="text" name="nationality" value="" required>
                     </div>
 
                     <div class="form-group">
                         <label>Gender</label>
-                        <input type="text" name="gender" value="<?php echo htmlspecialchars($user['gender']); ?>" required>
+                        <input type="text" name="gender" value="" required>
                     </div>
 
                     <div class="form-group">
                         <label>Race</label>
-                        <input type="text" name="race" value="<?php echo htmlspecialchars($user['race']); ?>" required>
+                        <input type="text" name="race" value="" required>
                     </div>
 
                     <div class="form-group">
                         <label>Start Date</label>
-                        <input type="date" name="start_date" value="<?php echo htmlspecialchars($user['start_date']); ?>" required>
+                        <input type="date" name="start_date" value="" required>
                     </div>
 
                     <div class="form-group">
                         <label>Mobile Number</label>
-                        <input type="text" name="mobile" value="<?php echo htmlspecialchars($user['mobile']); ?>" required>
+                        <input type="text" name="mobile" value="" required>
                     </div>
 
                     <div class="form-group">
                         <label>Email Address</label>
-                        <input type="email" name="email" value="<?php echo htmlspecialchars($user['email']); ?>" required>
+                        <input type="email" name="email" value="" required>
                     </div>
 
                     <div class="form-group">
                         <label>Emergency Name</label>
-                        <input type="text" name="emergency_name" value="<?php echo htmlspecialchars($user['emergency_name']); ?>" required>
+                        <input type="text" name="emergency_name" value="" required>
                     </div>
 
                     <div class="form-group">
                         <label>Emergency Number</label>
-                        <input type="text" name="emergency_number" value="<?php echo htmlspecialchars($user['emergency_number']); ?>" required>
+                        <input type="text" name="emergency_number" value="" required>
                     </div>
 
                     <button type="submit" class="save-button">Save</button>
@@ -190,5 +185,39 @@ $user = $user ?: [
             </div>
         </div>
     </div>
+
+    <script>
+  // Toggle sidebar
+  function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    sidebar.classList.toggle('active');
+  }
+
+  // Close sidebar if clicked outside
+  document.addEventListener('click', function(event) {
+    const sidebar = document.getElementById('sidebar');
+    const hamburger = document.querySelector('.hamburger');
+
+    // Check if the click is outside the sidebar or hamburger
+    if (!sidebar.contains(event.target) && !hamburger.contains(event.target)) {
+      sidebar.classList.remove('active');
+    }
+  });
+
+  // Update Profile Picture
+  function updateProfilePicture(event) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+      document.getElementById('profileImage').src = e.target.result;
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  }
+</script>
+
 </body>
 </html>
