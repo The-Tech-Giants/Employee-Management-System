@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $reason = $_POST["reason"] ?? '';
 
     $host = "localhost";
-    $dbname = "timeoff_db";
+    $dbname = "users1";
     $username = "root";
     $password = "";
 
