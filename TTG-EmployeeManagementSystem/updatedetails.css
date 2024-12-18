@@ -1,8 +1,10 @@
 * {
     margin: 0;
     padding: 0;
+    border: none;
+    outline: none;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: "Poppins", sans-serif;
 }
 
 body {
@@ -10,9 +12,9 @@ body {
         padding: 0;
         font-family: Arial, sans-serif;
         background-image: url('TTG-Background.png'); 
-        background-size: cover; /* Change 'contain' to 'cover' */
+        background-size: cover; 
         background-repeat: no-repeat; /* Prevent image repetition */
-        background-position: center; /* Center the image */
+        background-position: center; 
         background-attachment: fixed;
         color: #333; 
         height: 100vh;   
@@ -26,7 +28,7 @@ body::before {
     right: 0;
     bottom: 0;
     background: rgba(0, 0, 0, 0); /* No transparency on the overlay */
-    z-index: -1; /* Place behind the content */
+    z-index: -1; 
 }
 
 
@@ -49,6 +51,10 @@ body::before {
     padding: 20px;
     transition: transform 0.3s ease;
   }
+
+  .sidebar.active {
+    transform: translateX(0); /* Slide in when active */
+}
 
 .profile-section {
     text-align: center;
@@ -78,23 +84,24 @@ body::before {
 
 .sidebar p {
     font-size: 1.2em;
-    margin-bottom: 30px;
+    margin-bottom: 8px;
   }
 
 .sidebar nav {
-    margin-top: 30px;
+    margin-top: 8px;
 }
 
 .sidebar nav a {
     display: block;
     width: 100%;
     padding: 10px;
-    margin: 5px 0;
+    margin: 2px 0;
     color: white;
     text-align: left;
     text-decoration: none;
     border-radius: 5px;
     transition: background-color 0.3s ease;
+   
   }
 
 .sidebar nav a:hover {
@@ -105,6 +112,7 @@ body::before {
     margin-right: 10px;
 }
 
+
 /* Main Content */
 .main-content {
     flex-grow: 1;
@@ -114,7 +122,6 @@ body::before {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-
 /* Update Details Section */
 .update-details {
     background-color: rgba(255, 255, 255, 0.2);
@@ -122,13 +129,11 @@ body::before {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-
 .update-details h1 {
     text-align: center;
     margin-bottom: 20px;
     color: #333;
 }
-
 
 /* Form */
 .update-form {
@@ -138,18 +143,15 @@ body::before {
     padding: 20px;
     border-radius: 8px;
 }
-
 .form-group {
     display: flex;
     flex-direction: column;
 }
-
 .form-group label {
     font-weight: bold;
     margin-bottom: 5px;
     color: #333;
 }
-
 .form-group input, .form-group select {
     background-color: rgba(255, 255, 255, 0.9);
     padding: 8px;
@@ -157,13 +159,12 @@ body::before {
     border-radius: 5px;
     font-size: 1em;
 }
-
 .form-group input:focus {
     border-color: #ff9500;
     outline: none;
 }
 
-/* Save Button */
+
 .save-button {
     grid-column: span 2;
     padding: 10px;
@@ -188,8 +189,6 @@ body::before {
     font-weight: bold;
     margin-top: 15px;
 }
-
-
 
 
 
@@ -256,26 +255,40 @@ body::before {
     font-size: 1.5em;
     color:#ff9500;
     cursor: pointer;
+    z-index: 999;
   }
 
 
     @media (max-width: 768px) {
         .update-form {
-            grid-template-columns: 1fr;             /* Single-column layout for mobile */
-            gap: 10px;                              /*Adjust spacing between fields */
+            grid-template-columns: 1fr;     /* Single-column layout for mobile */
+            gap: 10px;                      /*Adjust spacing between fields */
         }
     
         .save-button {
-            grid-column: span 1;                    /* Ensure button spans only one column */
+            grid-column: span 1;            /* Ensure button spans only one column */
+        }
+
+        .sidebar {
+            width: 50%; 
+            transform: translateX(-100%); 
+            position: fixed; 
+            height: 100%; 
+        }
+
+        .sidebar.active {
+            transform: translateX(0); 
         }
     }
+
 
     @media (max-width: 768px){
         .hamburger{
             display: block;
         }
       }
-/* Desktop View */
+
+
 @media (min-width: 769px) {
     body {
         background-size: 60%; /* Scale the image to 60% of the container */
