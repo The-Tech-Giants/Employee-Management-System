@@ -8,6 +8,7 @@
 
 
 
+
 /* Apply background styling to the body */
 body {
     margin: 0;
@@ -15,45 +16,36 @@ body {
     /* background-image: url('TTG-Background.png'); */
     background-size: cover;
     background-repeat: no-repeat; 
-    background-position: center center; /* Ensure the background is centered */
+    background-position: center center; 
     height: 100vh; 
-    overflow: auto; /* Allow scrolling */
-    
+    overflow: auto; 
 }
 
-
 .task-table h2 {
-    margin-top: 10px; /* Adjust this value to push the element down */
-    margin-bottom: 10px; /* Optional: Adjust spacing below the h2 */
-    font-size: 24px; /* Optional: Adjust font size for better spacing */
-    text-align: left; /* Optional: Center the heading */
+    margin-top: 10px; 
+    margin-bottom: 10px; 
+    font-size: 24px; 
+    text-align: left;
 }
 
 .task-table {
-    padding-top: 10px; /* Adds space above the entire section */
-    padding-bottom: 20px; /* Optional: Adds space below the section */
+    padding-top: 10px; 
+    padding-bottom: 20px; 
 }
-
-
 
 /* For mobile devices */
 @media (max-width: 768px) {
     body {
-        background-image: url('TTG-Background.png'); /* Ensure the path is correct */
-        /* background-size: cover; Scale the image to cover the entire viewport */
-        background-repeat: no-repeat; /* Prevent tiling */
-        background-position: center; /* Center the image */
-        background-attachment: scroll; /* Mobile-friendly scrolling */
-        
+        background-image: url('TTG-Background.png'); 
+        background-repeat: no-repeat; 
+        background-position: center; 
+        background-attachment: scroll; 
     }
 
     .main-content {
-        margin-top: 10px; /* Pushes content down to make the background more visible */
-        
+        margin-top: 10px; 
     }
 }
-
-
 
 /* Main content styling */
 .main-content {
@@ -62,11 +54,10 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; /* Push content to the top */
-    background-color: #f4f4f4; /* Maintain background styling */
-    overflow-y: auto; /* Allow scrolling if content overflows */
+    justify-content: flex-start; 
+    background-color: #f4f4f4; 
+    overflow-y: auto; 
 }
-
 
 .main-content img {
     width: 100%;
@@ -76,7 +67,6 @@ body {
     margin-top: 20px; 
 }
 
-
 /* Adjusting sidebar on mobile */
 @media (max-width: 768px) {
     .sidebar {
@@ -85,35 +75,32 @@ body {
         left: 0;
         width: 250px;
         height: 100%;
-        transform: translateX(-250px); /* Hide by default */
+        transform: translateX(-250px); 
         z-index: 9999;
     }
 
     .sidebar.open {
-        transform: translateX(0); /* Show when toggled */
+        transform: translateX(0); 
     }
 
     .main-content {
-        margin-left: 0; /* Full width for mobile */
+        margin-left: 0; 
         padding: 20px;
     }
 
     .toggle-btn {
-        display: block; /* Show toggle button on mobile */
+        display: block; 
     }
 }
-
 
 /* Dashboard styling */
 .dashboard-container {
     display: flex;
     min-height: 100vh;
-    
 }
 
-
-
 .sidebar {
+    position: fixed;
     width: 250px;
     background-color: #ff9500;
     color: #fff;
@@ -123,7 +110,6 @@ body {
     padding: 20px; 
     transition: transform 0.4s ease-in-out;
 }
-
 
 /* Profile Section */
 .profile-card {
@@ -153,11 +139,11 @@ body {
     height: 100%;
     border-radius: 50%;
     object-fit: cover;
-    display: none; /* Hide the image initially */
+    display: none; 
 }
 
 .profile-image img[src] {
-    display: block; /* Show the image when a source is set */
+    display: block; 
 }
 
 .profile-button {
@@ -209,10 +195,10 @@ nav a i {
     font-size: 1.2em;
 }
 
-
 nav a:hover {
     background-color: #ff7a00;
 }
+
 
 
 /* Main content styling */
@@ -236,8 +222,6 @@ nav a:hover {
     z-index: 1000;
 }
 
-
-
 /* General reset */
 * {
     margin: 0;
@@ -246,20 +230,17 @@ nav a:hover {
     font-family: Arial, sans-serif;
 }
 
-
 /* Main content area */
 .main-content {
     padding: 30px;
-    background-color: rgba(244, 244, 244, 0.9); /* Light transparent background */
+    background-color: rgba(244, 244, 244, 0.9); 
     border-radius: 10px;
-    /* margin-top: 1rem; */
     background-image: url('TTG-Background.png');
     background-repeat: no-repeat;
     background-position: center;
-    background-size: cover; /* Ensures the image covers the entire area */
-    background-size: contain; /* Ensures the entire image is visible without cropping */
+    background-size: cover; 
+    background-size: contain; 
 }
-
 
 /* Tabular Section */
 .tabular--wrapper {
@@ -267,17 +248,16 @@ nav a:hover {
     margin-top: 1rem;
     border-radius: 10px;
     padding: 2rem;
-    background-image: url('background-image.png'); /* Add your background image */
+    background-image: url('background-image.png'); 
     background-repeat: no-repeat;
-    background-size: cover; /* Ensures the image covers the entire container */
+    background-size: cover; 
     background-position: center;
 }
 
 .table-container {
     width: 100%;
-    overflow-x: auto; /* Allows horizontal scrolling for small screens */
+    overflow-x: auto;
 }
-
 
 table {
     width: 100%;
@@ -315,7 +295,6 @@ tfoot {
 tfoot td {
     padding: 15px;
 }
-
 
 /* Button styles */
 .btn {
@@ -383,42 +362,39 @@ tfoot td {
     color: red;
 }
 
-
-
 /* Responsive Media Query */
 @media (max-width: 768px) {
     .task-table h2 {
-        margin-top: 20px; /* Pushes the h2 down */
-        margin-bottom: 10px; /* Optional: Adds space below the h2 */
-        font-size: 20px; /* Adjust font size for smaller screens */
-        text-align: center; /* Optional: Center the heading */
+        margin-top: 20px; 
+        margin-bottom: 10px; 
+        font-size: 20px; 
+        text-align: center; 
     }
 
     .task-table {
-        padding-top: 5px; /* Adds space above the entire section */
-        padding-bottom: 50px; /* Optional: Adds space below the section */
+        padding-top: 5px; 
+        padding-bottom: 50px; 
     }
 
     .tabular--wrapper {
-        padding-top: 3rem; /* Moves content down */
-        padding-bottom: 1rem; /* Adjust bottom padding */
+        padding-top: 3rem; 
+        padding-bottom: 1rem; 
     }
 
     .table-container {
-        overflow-x: auto; /* Ensures horizontal scrolling */
-        -webkit-overflow-scrolling: touch; /* Smooth scrolling for mobile devices */
-        
+        overflow-x: auto; 
+        -webkit-overflow-scrolling: touch; 
     }
 
     table {
-        width: 100%; /* Ensures table adjusts to container width */
-        border-collapse: collapse; /* Optional: Removes space between borders */
+        width: 100%; 
+        border-collapse: collapse; 
     }
 
     th, td {
-        font-size: 12px; /* Adjust font size for mobile */
-        padding: 10px; /* Reduce padding for smaller screens */
-        text-align: left; /* Align text to the left */
+        font-size: 12px; 
+        padding: 10px; 
+        text-align: left; 
     }
 
     .create-task-btn {
@@ -458,3 +434,6 @@ tfoot td {
         display: block;
     }
 }
+
+
+
