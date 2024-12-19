@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
             sidebar.classList.remove("open");
         }
     });
-    
+
 
     // Profile picture upload logic
     const input = document.getElementById("imageUpload");
@@ -33,4 +33,17 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
+    
+      // Show confirmation message for 3 seconds
+      window.onload = function() {
+        const confirmationMessage = document.querySelector('.confirmation-message');
+        if (confirmationMessage) {
+            setTimeout(function() {
+                confirmationMessage.style.display = 'none';
+            }, 3000); // Message disappears after 3 seconds
+        }
+    };
+
 });
+
+
