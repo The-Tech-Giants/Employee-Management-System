@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="manageLeaves.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Dashboard</title>
+</head>
+<body>
+    
+    <div class="container">
+    <div class="hamburger" onclick="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+    </div>
+
+    <div class="sidebar" id="sidebar">
+        <div class="profile-section">
+            <img src="profile-placeholder.png" alt="User Profile" class="profile-picture">
+            <p>Bonolo Mafafo</p>
+        </div>
+        <nav>
+            <a href="dashboard.html"><i class="fas fa-gauge"></i> Dashboard</a>
+            <a href="EmployeeTask.html"><i class="fas fa-users"></i> Employee Task</a>
+            <a href="manageLeaves.html"><i class="fas fa-calendar"></i> Manage Leaves</a>
+            <a href="EmployeeProfile.html"><i class="fas fa-list-check"></i> Employee Profile</a>
+            <a href="logout.php"><i class="fas fa-sign-out-alt"></i> Log Out</a>
+        </nav>
+    </div>
+    
+
+    <div class="main--content">
+    <div class="header-wrapper">
+        <div class="header--title">
+            <h2>Manage Employee Leaves</h2>
+        </div> 
+    </div>
+
+    <h3 class="main--title">Leave days</h3>
+    <div class="card--wrapper">
+
+        <div class="leave--card">
+            <div class="card--header">
+                <div class="leave">
+                    <span class="title">
+                        <i class="fas fa-users" style="margin-right: 5px;"></i> 
+                        Registered Employees
+                    </span>
+                    <span class="leave--value">
+                        <i class="fas fa-9" style="margin-right: 5px;"></i> 
+                        Active Employees
+                    </span>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="leave--card">
+            <div class="card--header">
+                <div class="leave">
+                    <span class="title">
+                        <i class="fas fa-suitcase-rolling" style="margin-right: 5px;"></i>
+                        Available Leave Types
+                    </span>
+                    <span class="leave--value">
+                        <i class="fas fa-4" style="margin-right: 5px;"></i>
+                        Leave Types
+                    </span>
+                </div>
+            </div>     
+        </div>
+
+        <div class="leave--card">
+            <div class="card--header">
+                <div class="leave">
+                    <span class="title">
+                        <i class="fas fa-building" style="margin-right: 5px;"></i>
+                        Available Departments
+                    </span>
+                    <span class="leave--value">
+                        <i class="fas fa-8" style="margin-right: 5px;"></i>
+                        Employee Departments
+                    </span>
+                </div>         
+            </div>          
+        </div>
+    </div>
+
+
+    <div class="content"> 
+    <div class="tabular--wrapper">
+    <h3 class="main--title">Recent List</h3>
+    
+        <table>
+            <thead>
+                <tr>
+                    <th>S.N</th>
+                    <th>Employee ID</th>
+                    <th>Full Name</th>
+                    <th>Leave Type</th>
+                    <th>Applied On</th>
+                    <th>Current Status</th>
+                </tr>
+            </thead>
+                <tbody>
+                    <tr>     
+                        <td data-label="S.N:">1</td>
+                        <td data-label="Employee ID:">ASTRO571234</td>
+                        <td data-label="Full Name:">Sibusiso Ndabezitha</td>
+                        <td data-label="Leave Type:">Compensatory Leave</td>
+                        <td data-label="Applied On:">04/10/2024</td>
+                        <td data-label="Current Status:">Approved <i class="fas fa-check approved-icon" style="color: green; margin-left: 5px;"></i></td>
+                        <td><a href="#" class="btn btn-view" onclick="openModal('Sibusiso Ndabezitha', 'Compensatory Leave', '22', '04/10/2024')">View Details</a></td>
+                    </tr>
+                    
+                    <tr>     
+                        <td data-label="S.N:">2</td>
+                        <td data-label="Employee ID:">ASTRO371214</td>
+                        <td data-label="Full Name:">Bonolo Mafafo</td>
+                        <td data-label="Leave Type:">Medical Leave</td>
+                        <td data-label="Applied On:">15/10/2024</td>
+                        <td data-label="Current Status:">Pending <i class="fas fa-clock pending-icon" style="color: orange; margin-left: 5px;"></i></td>
+                        <td><a href="#" class="btn btn-view" onclick="openModal('Bonolo Mafafo', 'Medical Leave', '25', '15/10/2024')">View Details</a></td>
+                    </tr>
+
+                    <tr>     
+                        <td data-label="S.N:">3</td>
+                        <td data-label="Employee ID:">ASTRO86649</td>
+                        <td data-label="Full Name:">Kgaogelo Makgwale</td>
+                        <td data-label="Leave Type:">Sick Leave</td>
+                        <td data-label="Applied On:">14/10/2024</td>
+                        <td data-label="Current Status:">Pending <i class="fas fa-clock pending-icon" style="color: orange; margin-left: 5px;"></i></td>
+                        <td><a href="#" class="btn btn-view" onclick="openModal('Kgaogelo Makgwale', 'Sick Leave', '17', '14/10/2024')">View Details</a></td>
+                    </tr>
+
+                    <tr>     
+                        <td data-label="S.N:">3</td>
+                        <td data-label="Employee ID:">ASTRO098763</td>
+                        <td data-label="Full Name:">Maxwell Smith</td>
+                        <td data-label="Leave Type:">Casual Leave</td>
+                        <td data-label="Applied On:">15/10/2024</td>
+                        <td data-label="Current Status:">Approved <i class="fas fa-check approved-icon" style="color: green; margin-left: 5px;"></i></td>
+                        <td><a href="#" class="btn btn-view" onclick="openModal('Maxwell Smith', 'Casual Leave', '12', '15/10/2024')">View Details</a></td>
+                    </tr>
+                </tbody>           
+        </table>
+    
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+<!-- Modal Structure -->
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div class="modal-header">Leave History</div>
+        <div id="modalContent"></div>
+    </div>
+</div>
+
+
+
+<script>
+    // Toggle sidebar
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('active');
+    }
+  
+    // Close sidebar if clicked outside
+    document.addEventListener('click', function(event) {
+      const sidebar = document.getElementById('sidebar');
+      const hamburger = document.querySelector('.hamburger');
+  
+      
+      // Check if the click is outside the sidebar or hamburger
+      if (!sidebar.contains(event.target) && !hamburger.contains(event.target)) {
+        sidebar.classList.remove('active');
+      }
+    });  
+  
+    // Update Profile Picture
+    function updateProfilePicture(event) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+  
+      reader.onload = function(e) {
+        document.getElementById('profileImage').src = e.target.result;
+      };
+  
+      if (file) {
+        reader.readAsDataURL(file);
+      }
+    }
+
+    // Open Modal
+    function openModal(employeeName, leaveType, leaveBalance, appliedDate, startDate, endDate) {
+        const modal = document.getElementById('myModal');
+        const modalContent = document.getElementById('modalContent');
+
+        modalContent.innerHTML = `
+            <p><strong>Employee:</strong> ${employeeName}</p>
+            <p><strong>Leave Type:</strong> ${leaveType}</p>
+            <p><strong>Leave Balance:</strong> ${leaveBalance}</p>
+            <p><strong>Applied On:</strong> ${appliedDate}</p>
+            <p><strong>Start date:</strong> ${startDate}</p>
+            <p><strong>End Date:</strong> ${endDate}</p>
+            <p><strong>Leave History:</strong> This section will show all leave history for the selected employee.</p>
+        `;
+
+        modal.style.display = "block";
+    }
+
+    // Close Modal
+    function closeModal() {
+        const modal = document.getElementById('myModal');
+        modal.style.display = "none";
+    }
+
+    // Close modal if clicked outside of it
+    window.onclick = function(event) {
+        const modal = document.getElementById('myModal');
+        if (event.target == modal) {
+            closeModal();
+        }
+    }
+  </script>
+  
+</body>
+</html>
