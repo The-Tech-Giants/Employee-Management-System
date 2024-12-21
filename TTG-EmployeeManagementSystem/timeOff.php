@@ -123,10 +123,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <script>
   // Toggle sidebar
-  function toggleSidebar() {
-    const sidebar = document.getElementById('sidebar');
-    sidebar.classList.toggle('active');
-  }
+  document.addEventListener("DOMContentLoaded", () => {
+    const toggleBtn = document.querySelector(".hamburger"); // Your hamburger menu button
+    const sidebar = document.querySelector(".sidebar"); // Sidebar element
+    
+    // Sidebar toggle functionality
+    if (toggleBtn && sidebar) {
+        toggleBtn.addEventListener("click", (event) => {
+            event.stopPropagation(); // Prevent click from propagating to document
+            sidebar.classList.toggle("open");
+        });
+    }
+
+    // Close sidebar when clicking outside it (only on mobile view)
+    document.addEventListener("click", (event) => {
+        const isMobile = window.innerWidth <= 768; // Adjust the breakpoint as per your design
+        if (isMobile && sidebar && !sidebar.contains(event.target) && !toggleBtn.contains(event.target)) {
+            sidebar.classList.remove("open");
+        }
+    });
+});
+
 
   // Update Profile Picture
   function updateProfilePicture(event) {
